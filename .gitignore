@@ -1,0 +1,136 @@
+# =============================================================================
+# SecureVault .gitignore – safe for CI (docker-compose, Sonar, workflows, docs)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Secrets and local env (never commit)
+# -----------------------------------------------------------------------------
+.env
+!.env.example
+**/.env
+!**/.env.example
+
+# Optional override config that may contain secrets (baseline appsettings is tracked)
+appsettings.Production.json
+appsettings.*.local.json
+
+# -----------------------------------------------------------------------------
+# .NET build and tooling
+# -----------------------------------------------------------------------------
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+**/packages/
+**/.nuget/
+*.user
+*.userosscache
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# -----------------------------------------------------------------------------
+# Node / frontend
+# -----------------------------------------------------------------------------
+node_modules/
+**/node_modules/
+.npm
+*.tsbuildinfo
+
+# Nuxt / Vite build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist/
+**/dist/
+
+# -----------------------------------------------------------------------------
+# Test and coverage (CI generates and uploads as artifacts; do not commit)
+# If assignment requires a committed coverage report, add e.g. !coverage/report/
+# -----------------------------------------------------------------------------
+[Tt]est[Rr]esults/
+**/TestResults/
+[Cc]overage/
+**/coverage/
+coverage-out/
+coverage-runsettings/
+**/*.trx
+**/*.VisualState.xml
+*.coverage
+*.coveragexml
+
+# Stryker mutation testing output (CI uploads as artifact)
+# If assignment requires a committed Stryker HTML report, add: !path/to/mutation-report.html
+**/StrykerOutput/
+stryker-report/
+**/stryker-report/
+
+# Playwright
+playwright-report/
+**/playwright-report/
+test-results/
+**/test-results/
+playwright/.cache/
+blob-report/
+**/blob-report/
+
+# -----------------------------------------------------------------------------
+# Sonar scanner (local runs; CI uses repo sonar-project.properties)
+# -----------------------------------------------------------------------------
+.sonarqube/
+**/.sonarqube/
+
+# -----------------------------------------------------------------------------
+# IDE and editors
+# -----------------------------------------------------------------------------
+.vs/
+**/.vs/
+.idea/
+**/.idea/
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.fleet/
+*.DotSettings.user
+
+# -----------------------------------------------------------------------------
+# OS and misc
+# -----------------------------------------------------------------------------
+.DS_Store
+**/.DS_Store
+Thumbs.db
+**/Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# -----------------------------------------------------------------------------
+# Logs and temp
+# -----------------------------------------------------------------------------
+logs/
+**/logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.temp/
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*~
+
+# -----------------------------------------------------------------------------
+# Docker (optional; uncomment if you want to ignore local override)
+# -----------------------------------------------------------------------------
+# docker-compose.override.yml
+# docker-compose.*.local.yml

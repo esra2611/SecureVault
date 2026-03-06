@@ -1,0 +1,59 @@
+# Repo root .dockerignore – excludes secrets and build/test artifacts from Docker build context.
+# Used when build context is . (e.g. frontend with context: .). For API (context: ./src) see src/.dockerignore.
+
+.git
+.gitignore
+**/.git
+**/.gitignore
+
+# Secrets and sensitive files
+.env
+**/.env
+**/.env*
+!**/.env.example
+!**/.env.example.*
+**/*.pem
+**/*.pfx
+**/*.key
+**/id_rsa*
+**/secrets/
+
+# Build and IDE
+**/bin/
+**/obj/
+**/.vs/
+**/.idea/
+**/*.user
+**/packages/
+**/.nuget/
+
+# Node / Nuxt build and test artifacts
+**/node_modules/
+**/.nuxt/
+**/.output/
+**/dist/
+**/frontend/dist/
+
+# Tests and coverage
+**/TestResults/
+**/coverage/
+**/stryker-output/
+**/playwright-report/
+**/test-results/
+
+# Docs (not needed in images)
+docs/
+**/docs/
+
+# App config that may contain secrets (allow templates only)
+**/appsettings*.json
+!**/appsettings*.template.json
+!**/appsettings*.example.json
+
+# Misc
+*.md
+**/*.md
+.DS_Store
+**/.DS_Store
+docker-compose*.yml
+**/docker-compose*.yml

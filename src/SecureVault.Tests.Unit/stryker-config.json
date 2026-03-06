@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "solution": "../SecureVault.sln",
+    "project": "SecureVault.Application.csproj",
+    "thresholds": {
+      "break": 60
+    },
+    "reporters": ["html", "progress"]
+  }
+}

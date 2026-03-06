@@ -1,0 +1,43 @@
+# Context root for API/Consumer builds (context: ./src)
+# Excludes secrets, tests, coverage, and irrelevant artifacts from Docker build context.
+
+.git
+.gitignore
+**/.git
+**/.gitignore
+
+# Build and IDE
+**/bin/
+**/obj/
+**/.vs/
+**/*.user
+**/packages/
+**/.nuget/
+
+# Tests, coverage, and non-API projects (smaller context; API Dockerfile copies only Api/Application/Domain/Infrastructure)
+**/TestResults/
+**/coverage/
+**/stryker-output/
+**/node_modules/
+
+# Secrets and sensitive config (allow templates/examples only)
+.env
+**/.env
+.env.*
+!**/.env.example
+!**/.env.example.*
+**/appsettings*.json
+!**/appsettings*.template.json
+!**/appsettings*.example.json
+**/*.pfx
+**/*.pem
+**/*.key
+**/id_rsa*
+**/.env.local
+**/secrets/
+
+# Misc
+*.md
+**/*.md
+.DS_Store
+**/.DS_Store

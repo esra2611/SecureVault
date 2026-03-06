@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <!-- Domain, Application, and Infrastructure count toward coverage gate; Api/Migrations/wiring excluded. -->
+          <Include>[SecureVault.Domain]*,[SecureVault.Application]*,[SecureVault.Infrastructure]*</Include>
+          <ExcludeByFile>**/DependencyInjection.cs,**/*DbContext*.cs,**/Migrations/**</ExcludeByFile>
+          <Format>opencover</Format>
+          <IncludeTestAssembly>false</IncludeTestAssembly>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>
