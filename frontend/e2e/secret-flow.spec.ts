@@ -42,6 +42,7 @@ test.describe('Secret flow', () => {
     await expect(page.getByRole('status', { name: 'Secret expired' })).toBeVisible()
   })
 
+  // Wrong password shows same UX as expired (no oracle); retry by re-opening link then entering correct password.
   test('password-protected: create with password, wrong password does not reveal, correct reveals, second open shows expired', async ({ page }) => {
     await page.goto('/')
     await expect(page.getByRole('heading', { name: /SecureVault/i })).toBeVisible()
@@ -58,19 +59,22 @@ test.describe('Secret flow', () => {
     expect(href).toContain('/s/')
 
     await page.goto(href!)
-    await expect(page.getByText(/password-protected/i)).toBeVisible()
     await expect(page.getByPlaceholder('Password')).toBeVisible()
+    await expect(page.getByRole('button', { name: /Reveal secret/i })).toBeVisible()
 
     await page.getByPlaceholder('Password').fill('wrong-password')
     await page.getByRole('button', { name: /Reveal secret/i }).click()
-    await expect(page.getByText(/wrong password/i)).toBeVisible()
     await expect(page.getByRole('region', { name: 'Secret content' })).not.toBeVisible()
+    await expect(page.getByRole('status', { name: 'Secret expired' })).toBeVisible()
 
+    await page.reload()
+    await expect(page.getByPlaceholder('Password')).toBeVisible()
     await page.getByPlaceholder('Password').fill('correct-password')
     await page.getByRole('button', { name: /Reveal secret/i }).click()
     await expect(page.getByRole('region', { name: 'Secret content' })).toContainText('E2E password secret')
 
-    await page.goto(href!)
+    const revealUrlWithoutHash = href!.split('#')[0]
+    await page.goto(revealUrlWithoutHash)
     await expect(page.getByRole('status', { name: 'Secret expired' })).toBeVisible()
   })
 })

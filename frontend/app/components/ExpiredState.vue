@@ -14,10 +14,11 @@
       </svg>
     </div>
     <h2 class="text-xl font-semibold text-gray-900 mb-2">
-      This secret has expired or has already been viewed.
+      This secret is no longer available.
     </h2>
     <p class="text-gray-600 text-sm max-w-sm mx-auto mb-6">
-      One-time links cannot be opened again. Create a new link if you need to share another secret.
+      It may have expired, already been viewed, or the password may have been incorrect.
+      If you entered a wrong password, reopen the link to try again.
     </p>
     <NuxtLink
       to="/"
